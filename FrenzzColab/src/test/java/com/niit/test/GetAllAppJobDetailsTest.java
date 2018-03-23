@@ -1,6 +1,8 @@
 package com.niit.test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+import java.util.List;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -9,9 +11,10 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import com.niit.Config.DBConfig;
 import com.niit.DAO.JobDAO;
-import com.niit.Model.Job;
+import com.niit.Model.ApplyJob;
 
-public class JobUpdateTest {
+
+public class GetAllAppJobDetailsTest {
 	private static DBConfig config;
 	@Autowired
 	private static JobDAO jobDAO;
@@ -27,14 +30,23 @@ public class JobUpdateTest {
 		
 		jobDAO =(JobDAO) context.getBean("jobDAO");
 	}
+	
 	@Test
-	public void testUpdateJob() {
+	public void testGetAllJobdetails() {
+		ApplyJob app = new ApplyJob();
+
+	List<ApplyJob> listApplyJobs=jobDAO.getAllApplicationJobDetails();
+	
+	assertTrue("List of Applyjob data display",listApplyJobs.size()>0);
+	
+	for(ApplyJob j1:listApplyJobs)
+	{
+		System.out.println(j1.getApplicationId()+"::");
+		System.out.println(j1.getJobId()+"::");
+		System.out.println(j1.getLoginname()+"::");
+		System.out.println(j1.getApplyDate()+"::");
+	}
 		
-		Job job = new Job();
-		 job=(Job)jobDAO.getJob(62);
-		 job.setSalary(60000);
-		 assertEquals("sucessfully updated from table" ,true,jobDAO.updateJob(job));
-			
 	}
 
 }

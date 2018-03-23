@@ -1,6 +1,8 @@
 package com.niit.test;
 
-import java.util.ArrayList;
+import static org.junit.Assert.assertTrue;
+
+
 import java.util.List;
 
 import org.junit.BeforeClass;
@@ -31,24 +33,20 @@ public class ForumListByUserTest {
 
 	@Test
 	public void testListByUserForum() {
-		Forum forum = new Forum();
-		List<Forum> forumList=new ArrayList<Forum>();
-		forumList=forumDAO.listForum("Kiri");
-		if(forumList.isEmpty())
+        Forum forum = new Forum();
+		
+		List<Forum> listForums= forumDAO.listForum("Kajal");
+		assertTrue("List of Forum data display",listForums.size()>0);
+		
+		for(Forum forums:listForums)
 		{
-			System.out.println("error");
-		}
-		else
+			System.out.println(forums.getForumId()+"::");
+			System.out.println(forums.getForumName()+"::");
+			System.out.println(forums.getForumContent()+"::");
+			System.out.println(forums.getStatus()+"::");
+			System.out.println(forums.getUsername()+"::");
 			
-		{
-			for(Forum forum1:forumList)
-			{
-				
-				System.out.println("Forum Id:" + forum1.getForumId() +  "Forum Content:"  +  forum1.getForumContent()  +  "Name:" + forum1.getUsername());
-			}
 		}
-		
-		
 	}
 	
 }

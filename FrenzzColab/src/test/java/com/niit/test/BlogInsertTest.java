@@ -1,8 +1,8 @@
 package com.niit.test;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import static org.junit.Assert.*;
+
+
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -32,19 +32,17 @@ public class BlogInsertTest {
 	}
 
 	@Test
-	public void testInsertBlog() throws ParseException {
-		String dt="04/03/2001";
-		Date dobj=new SimpleDateFormat("dd/mm/yyyy").parse(dt);
-			
+	public void testInsertBlog() {
+
 		Blog blog = new Blog();
 
 		blog.setBlogName("test2");
 		blog.setBlogContent("Politician");
-		blog.setCreateDate(dobj);
+		blog.setCreateDate(new java.util.Date());
 		blog.setUsername("Kiri");
 		blog.setStatus("A");
-	
-		blogDAO.addBlog(blog);
+		blog.setLikes(0);
+	assertTrue("Data inserted in blog table",blogDAO.addBlog(blog));
 		System.out.println("Done Boss");
 
 	}

@@ -11,7 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.DAO.ForumDAO;
 import com.niit.Model.Blog;
+import com.niit.Model.BlogComment;
 import com.niit.Model.Forum;
+import com.niit.Model.ForumComment;
 @Repository("ForumDAO")
 public class ForumDAOImpl implements ForumDAO {
 
@@ -113,10 +115,73 @@ public List<Forum> listForum(String username) {
 	Session session=sessionFactory.openSession();
 	Query query=session.createQuery("from Forum where username=:username");
 	query.setParameter("username",username);
-	query.list();
-	List<Forum> forum=query.list();
-	return forum;
+	List<Forum> listForums=query.list();
+	return listForums;
 	
+}
+public boolean incrementLikes(Forum forum) {
+	try
+	{
+		int likes=forum.getLikes();
+		likes++;
+		forum.setLikes(likes);
+		sessionFactory.getCurrentSession().update(forum);
+		return true;
+	}
+	catch(Exception e)
+	{
+		return false;
+	}
+}
+
+
+public boolean addForumComment(ForumComment forumComment) {
+	try
+	{
+		sessionFactory.getCurrentSession().save(forumComment);
+		return true;
+	}
+	catch(Exception e)
+	{
+		return false;
+	}
+	
+}
+
+public boolean deleteForumComment(ForumComment forumComment) {
+	try
+	{
+		sessionFactory.getCurrentSession().delete(forumComment);
+		return true;
+	}
+	catch(Exception e)
+	{
+		return false;
+	}
+}
+
+
+public ForumComment getForumComment(int commentId) {
+	try
+	{
+		Session session=sessionFactory.openSession();
+		ForumComment forumComment=session.get(ForumComment.class,commentId);
+		session.close();
+		return forumComment;
+	}
+	catch(Exception e)
+	{
+		return null;
+	}
+}
+
+
+public List<ForumComment> listForumComment(int forumId) {
+	Session session=sessionFactory.openSession();
+	Query query=session.createQuery("from BlogComment where forumId=:forumId");
+	query.setParameter("forumId",forumId);
+	List<ForumComment> listForumComment=query.list();
+	return listForumComment;
 }
 	
 }

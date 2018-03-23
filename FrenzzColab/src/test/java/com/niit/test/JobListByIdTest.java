@@ -1,5 +1,7 @@
 package com.niit.test;
 
+import static org.junit.Assert.assertTrue;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +12,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import com.niit.Config.DBConfig;
 import com.niit.DAO.JobDAO;
+import com.niit.Model.Blog;
 import com.niit.Model.Job;
 
 public class JobListByIdTest {
@@ -32,21 +35,18 @@ public class JobListByIdTest {
 	public void testUpdateJob() {
 		Job job = new Job();
 
-		List<Job> jobList=new ArrayList<Job>();
-		jobList=jobDAO.listJob(2);
-		if(jobList.isEmpty())
+		List<Job> listJobs=jobDAO.listJob(62);
+		assertTrue("List of job data display",listJobs.size()>0);
+		
+		for(Job jobs:listJobs)
 		{
-			System.out.println("error");
-		}
-		else
+			System.out.println(jobs.getCompany()+"::");
+			System.out.println(jobs.getJobDesc()+"::");
+			System.out.println(jobs.getJobDesignation()+"::");
+			System.out.println(jobs.getLocation()+"::");
+			System.out.println(jobs.getSalary()+"::");
 			
-		{
-			for(Job job1:jobList)
-			{
-				
-				System.out.println("Job Id:" + job1.getJobId() +  ",Job Title:"  +  job1.getJobTitle()  +  ",Salary:" + job1.getSalary());
-			}
 		}
-	}
 
+}
 }

@@ -1,6 +1,9 @@
 package com.niit.test;
 
 import java.util.Date;
+
+import static org.junit.Assert.assertTrue;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -31,18 +34,16 @@ public class JobInsertTest {
 		jobDAO =(JobDAO) context.getBean("jobDAO");
 	}
 	@Test
-	public void testInsertJob() throws ParseException{
-		String dt="08/11/2001";
-		Date dobj=new SimpleDateFormat("dd/mm/yyyy").parse(dt);
+	public void testInsertJob() {
 		Job job = new Job();
 
-		job.setJobTitle("Manager");
-	job.setJobDescription("Managing design part");
-		job.setJoinDate(dobj);
-		job.setSalary(50000);
-
-	    jobDAO.addJob(job);
-		System.out.println("Done Boss");
+		job.setCompany("ABC pvt.Ltd");
+		job.setJobDesc("Food Company");
+		job.setLastDateApply(new java.util.Date());
+		job.setJobDesignation("Manager");
+		job.setLocation("Pune");
+		job.setSalary(45000);
+	assertTrue("Data inserted in job table",jobDAO.addJob(job));
 		
 	}
 }

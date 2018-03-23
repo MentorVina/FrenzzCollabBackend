@@ -4,16 +4,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 @Component
 @Entity
+@Table(name="Users")
 public class User {
 	
 	@Id
-	@GeneratedValue(generator="job_sequence", strategy= GenerationType.SEQUENCE)
-	@SequenceGenerator(name="job_sequence", sequenceName="job_seq", initialValue=1, allocationSize=1)
+	@GeneratedValue(generator="user_sequence", strategy= GenerationType.SEQUENCE)
+	@SequenceGenerator(name="user_sequence", sequenceName="user_seq", initialValue=1, allocationSize=1)
 	int userId;
+	
 	String fName;
 	String lName;
 	int age;
@@ -22,6 +25,7 @@ public class User {
 	String email;
 	String pass;
 	java.util.Date dob;
+	
 	public int getUserId() {
 		return userId;
 	}

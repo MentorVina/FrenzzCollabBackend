@@ -1,6 +1,6 @@
 package com.niit.test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -28,13 +28,13 @@ public class BlogRejectTest {
 		blogDAO =(BlogDAO) context.getBean("blogDAO");
 	}
 	@Test
-	public void testApproveBlog() 
+	public void testRejectBlog() 
 	{
 		
 		Blog blog = new Blog();
-		 blog=(Blog)blogDAO.getBlog(2);
-		 blog.setStatus("A");
-		 assertEquals("sucessfully updated status from table" ,true,blogDAO.rejectBlog(blog));
+		 blog=(Blog)blogDAO.getBlog(1);
+		 
+		 assertTrue("sucessfully updated status from table" ,blogDAO.rejectBlog(blog));
 
 }
 

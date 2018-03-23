@@ -6,6 +6,7 @@ import com.niit.Model.User;
 
 
 
+
 public interface UserDAO {
 	public boolean addUser(User user);
 	public boolean deleteUser(User user);

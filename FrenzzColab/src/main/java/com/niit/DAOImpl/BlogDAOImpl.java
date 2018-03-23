@@ -11,11 +11,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.DAO.BlogDAO;
 import com.niit.Model.Blog;
+import com.niit.Model.BlogComment;
 @Repository("BlogDAO")
 public class BlogDAOImpl implements BlogDAO{
 
 	@Autowired
     SessionFactory sessionFactory;
+	private Object username;
 	/*@Autowired
 	/*public BlogDAOImpl(SessionFactory sessionFactory) {
 		
@@ -111,9 +113,78 @@ public List<Blog> listBlog(String username) {
 	Session session=sessionFactory.openSession();
 	Query query=session.createQuery("from Blog where username=:username");
 	query.setParameter("username",username);
-	query.list();
-	List<Blog> blog=query.list();
-	return blog;
+	List<Blog> listBlogs=query.list();
+	return listBlogs;
+}
+
+
+public boolean incrementLikes(Blog blog) {
+	try
+	{
+		int likes=blog.getLikes();
+		likes++;
+		blog.setLikes(likes);
+		sessionFactory.getCurrentSession().update(blog);
+		return true;
+	}
+	catch(Exception e)
+	{
+		return false;
+	}
+	
+}
+
+
+public boolean addBlogComment(BlogComment blogComment) {
+	try
+	{
+		sessionFactory.getCurrentSession().save(blogComment);
+		return true;
+	}
+	catch(Exception e)
+	{
+		return false;
+	}
+	
+}
+
+
+public boolean deleteBlogComment(BlogComment blogComment) {
+	try
+	{
+		sessionFactory.getCurrentSession().delete(blogComment);
+		return true;
+	}
+	catch(Exception e)
+	{
+		return false;
+	}
+	
+}
+
+
+public BlogComment getBlogComment(int commentId) {
+	try
+	{
+		Session session=sessionFactory.openSession();
+		BlogComment blogComment=session.get(BlogComment.class,commentId);
+		session.close();
+		return blogComment;
+	}
+	catch(Exception e)
+	{
+		return null;
+	}
+	
+}
+
+
+public List<BlogComment> listBlogComment(int blogId) {
+	Session session=sessionFactory.openSession();
+	Query query=session.createQuery("from BlogComment where blogId=:blogId");
+	query.setParameter("blogId",blogId);
+	List<BlogComment> listBlogComment=query.list();
+	return listBlogComment;
 }
 
 }

@@ -22,10 +22,18 @@ import com.niit.DAOImpl.BlogDAOImpl;
 import com.niit.DAOImpl.ForumDAOImpl;
 import com.niit.DAOImpl.JobDAOImpl;
 import com.niit.DAOImpl.UserDAOImpl;
+import com.niit.Model.ApplyJob;
 import com.niit.Model.Blog;
+import com.niit.Model.BlogComment;
 import com.niit.Model.Forum;
+import com.niit.Model.ForumComment;
 import com.niit.Model.Job;
 import com.niit.Model.User;
+
+
+
+
+
 
 @Configuration
 @ComponentScan("com.niit")
@@ -63,9 +71,20 @@ public class DBConfig {
 			System.out.println("enter in session 4");
 			
 			sessionFactoryBuilder.addAnnotatedClass(Blog.class);
+			System.out.println("<--------------Blog Class Added-------------->");
 			sessionFactoryBuilder.addAnnotatedClass(Forum.class);
+			System.out.println("<--------------Forum Class Added-------------->");
 			sessionFactoryBuilder.addAnnotatedClass(Job.class);
+			System.out.println("<--------------Job Class Added-------------->");
 			sessionFactoryBuilder.addAnnotatedClass(User.class);
+			System.out.println("<--------------User Class Added-------------->");
+			sessionFactoryBuilder.addAnnotatedClass(ApplyJob.class);
+			System.out.println("<--------------ApplyJob Class Added-------------->");
+			sessionFactoryBuilder.addAnnotatedClass(BlogComment.class);
+			System.out.println("<--------------BlogComment Class Added-------------->");
+			sessionFactoryBuilder.addAnnotatedClass(ForumComment.class);
+			System.out.println("<--------------ForumComment Class Added-------------->");
+			
 			System.out.println("enter in session 5");
 			SessionFactory sessionFactory=sessionFactoryBuilder.buildSessionFactory();
 			System.out.println("out of session ");
@@ -99,6 +118,7 @@ public class DBConfig {
 			System.out.println("UserDAO found");
 			return new UserDAOImpl();
 		}
+	
 		
 		@Autowired
 		@Bean(name="transactionManager")

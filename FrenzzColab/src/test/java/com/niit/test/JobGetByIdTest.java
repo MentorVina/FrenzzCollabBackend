@@ -7,6 +7,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import com.niit.Config.DBConfig;
 import com.niit.DAO.JobDAO;
+import com.niit.Model.Blog;
 import com.niit.Model.Job;
 
 public class JobGetByIdTest {
@@ -28,8 +29,10 @@ public class JobGetByIdTest {
 	@Test
 	public void testUpdateJob() {
 		Job job = new Job();
-		 job=(Job)jobDAO.getJob(2);
-		 System.out.println("ID: "+job.getJobId() + ",JobTitle: " +  job.getJobTitle() + " ,Salary:"+ job.getSalary());
+		 job=(Job)jobDAO.getJob(62);
+		 
+		 System.out.println("ID: "+job.getJobId()+ ",Company: " +job.getCompany());
+		
 	}
 		
 

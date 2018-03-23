@@ -10,16 +10,21 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.DAO.UserDAO;
-import com.niit.Model.Blog;
 import com.niit.Model.User;
+
+
+
+
 @Repository("UserDAO")
 public class UserDAOImpl implements UserDAO {
+	
 	@Autowired
     SessionFactory sessionFactory;
 	
 	public UserDAOImpl() {
 		// TODO Auto-generated constructor stub
 	}
+	
 	@Transactional
 	public boolean addUser(User user) {
 		try

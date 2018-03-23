@@ -11,6 +11,8 @@ import com.niit.Config.DBConfig;
 import com.niit.DAO.BlogDAO;
 import com.niit.Model.Blog;
 
+
+
 public class BlogDeleteTest {
 	private static DBConfig config;
 	@Autowired
@@ -34,7 +36,7 @@ public class BlogDeleteTest {
 		
 		Blog blog = new Blog();
 		
-		 blog=(Blog)blogDAO.getBlog(1);
+		blog=(Blog)blogDAO.getBlog(1);
 		 assertEquals("sucessfully deleted from table" ,true,blogDAO.deleteBlog(blog));
 		
 	}

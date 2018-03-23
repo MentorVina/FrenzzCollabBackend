@@ -1,5 +1,7 @@
 package com.niit.test;
 
+import static org.junit.Assert.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,23 +37,24 @@ public class BlogListByUserTest {
 		
 		Blog blog = new Blog();
 		
-		List<Blog> blogList=new ArrayList<Blog>();
-		blogList=blogDAO.listBlog("Akshay");
-		if(blogList.isEmpty())
+		List<Blog> listBlogs=blogDAO.listBlog("Kiri");
+		assertTrue("List of blog data display",listBlogs.size()>0);
+		
+		for(Blog blogs:listBlogs)
 		{
-			System.out.println("error");
-		}
-		else
+			System.out.println(blogs.getBlogId()+"::");
+			System.out.println(blogs.getBlogName()+"::");
+			System.out.println(blogs.getBlogContent()+"::");
+			System.out.println(blogs.getStatus()+"::");
+			System.out.println(blogs.getUsername()+"::");
 			
-		{
-			for(Blog blog1:blogList)
-			{
-				
-				System.out.println("Blog Id:" + blog1.getBlogId() + "Blog Content:" + blog1.getBlogContent() +"Name:"+blog1.getUsername());
-			}
 		}
-		 
 	}
+		
+		
+		
+		 
+	
 
 }
 	

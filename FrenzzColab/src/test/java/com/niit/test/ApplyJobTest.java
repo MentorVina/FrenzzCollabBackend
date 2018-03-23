@@ -1,6 +1,8 @@
 package com.niit.test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+import java.text.ParseException;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -9,9 +11,11 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import com.niit.Config.DBConfig;
 import com.niit.DAO.JobDAO;
-import com.niit.Model.Job;
+import com.niit.Model.ApplyJob;
 
-public class JobUpdateTest {
+
+public class ApplyJobTest {
+	
 	private static DBConfig config;
 	@Autowired
 	private static JobDAO jobDAO;
@@ -27,14 +31,19 @@ public class JobUpdateTest {
 		
 		jobDAO =(JobDAO) context.getBean("jobDAO");
 	}
-	@Test
-	public void testUpdateJob() {
-		
-		Job job = new Job();
-		 job=(Job)jobDAO.getJob(62);
-		 job.setSalary(60000);
-		 assertEquals("sucessfully updated from table" ,true,jobDAO.updateJob(job));
-			
-	}
+@Test
+	public void testApplyJob() {
+		ApplyJob app = new ApplyJob();
 
+		System.out.println("enter in applyjob test");
+		app.setApplyDate(new java.util.Date());
+		System.out.println("enter in applyjob test date");
+		app.setJobId(2);
+		System.out.println("enter in applyjob test id");
+		app.setLoginname("Rama");
+		System.out.println("enter in applyjob test name");
+		
+	System.out.println(jobDAO.applyJob(app));
+	System.out.println("enter in applyjob test end");
+}
 }
