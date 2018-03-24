@@ -134,7 +134,7 @@ public boolean incrementLikes(Forum forum) {
 	}
 }
 
-
+@Transactional
 public boolean addForumComment(ForumComment forumComment) {
 	try
 	{
@@ -148,6 +148,7 @@ public boolean addForumComment(ForumComment forumComment) {
 	
 }
 
+@Transactional
 public boolean deleteForumComment(ForumComment forumComment) {
 	try
 	{
@@ -178,7 +179,7 @@ public ForumComment getForumComment(int commentId) {
 
 public List<ForumComment> listForumComment(int forumId) {
 	Session session=sessionFactory.openSession();
-	Query query=session.createQuery("from BlogComment where forumId=:forumId");
+	Query query=session.createQuery("from ForumComment where forumId=:forumId");
 	query.setParameter("forumId",forumId);
 	List<ForumComment> listForumComment=query.list();
 	return listForumComment;

@@ -1,4 +1,6 @@
 package com.niit.Model;
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,6 +9,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 @Component
 @Entity
 @Table(name="Users")
@@ -24,7 +28,8 @@ public class User {
 	String contactNo;
 	String email;
 	String pass;
-	java.util.Date dob;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+	Date dob;
 	
 	public int getUserId() {
 		return userId;
@@ -74,12 +79,13 @@ public class User {
 	public void setPass(String pass) {
 		this.pass = pass;
 	}
-	public java.util.Date getDob() {
+	public Date getDob() {
 		return dob;
 	}
-	public void setDob(java.util.Date dob) {
+	public void setDob(Date dob) {
 		this.dob = dob;
 	}
+	
 	
 	
 

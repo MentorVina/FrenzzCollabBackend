@@ -37,7 +37,7 @@ public class UserDAOImpl implements UserDAO {
 			return false;
 		}
 	}
-
+	@Transactional
 	public boolean deleteUser(User user) {
 		try
 		{
@@ -49,7 +49,7 @@ public class UserDAOImpl implements UserDAO {
 			return false;
 		}
 	}
-
+	@Transactional
 	public boolean updateUser(User user) {
 		try
 		{
@@ -80,9 +80,8 @@ public class UserDAOImpl implements UserDAO {
 		Session session=sessionFactory.openSession();
 		Query query=session.createQuery("from User where email=:email");
 		query.setParameter("email",email);
-		query.list();
-		List<User> user=query.list();
-		return user;
+		List<User> listUsers=query.list();
+		return listUsers;
 	}
 	
 	

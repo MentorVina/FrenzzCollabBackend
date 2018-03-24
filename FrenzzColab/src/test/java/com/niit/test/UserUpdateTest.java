@@ -1,7 +1,6 @@
 package com.niit.test;
 
-
-import java.util.Date;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -10,9 +9,10 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import com.niit.Config.DBConfig;
 import com.niit.DAO.UserDAO;
+import com.niit.Model.Blog;
 import com.niit.Model.User;
 
-public class UserInsertTest {
+public class UserUpdateTest {
 
 	
 	private static DBConfig config;
@@ -33,23 +33,11 @@ public class UserInsertTest {
 	
 	
 	@Test
-	public void testInsertUser() 
+	public void testDeleteUser() 
 	{
-		
-			
 		User user = new User();
-
-		user.setfName("Chetan");
-		user.setlName("Shirke");
-		user.setAge(27);
-		user.setContactNo("78956423589");
-		user.setDob(new java.util.Date());
-		user.setGender("Male");
-		user.setEmail("chetan@gmail.com");
-		user.setPass("6789");
-		userDAO.addUser(user);
-		System.out.println("Data inserted in users table");
-
+		user=(User)userDAO.getUser(24);
+		 user.setEmail("chetan@yahoo.com");
+		 assertEquals("sucessfully updated into table" ,true,userDAO.updateUser(user));
 	}
-
 }

@@ -117,7 +117,7 @@ public List<Blog> listBlog(String username) {
 	return listBlogs;
 }
 
-
+@Transactional
 public boolean incrementLikes(Blog blog) {
 	try
 	{
@@ -134,7 +134,7 @@ public boolean incrementLikes(Blog blog) {
 	
 }
 
-
+@Transactional
 public boolean addBlogComment(BlogComment blogComment) {
 	try
 	{
@@ -148,7 +148,7 @@ public boolean addBlogComment(BlogComment blogComment) {
 	
 }
 
-
+@Transactional
 public boolean deleteBlogComment(BlogComment blogComment) {
 	try
 	{

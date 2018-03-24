@@ -1,8 +1,5 @@
 package com.niit.test;
 
-
-import java.util.Date;
-
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +7,10 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import com.niit.Config.DBConfig;
 import com.niit.DAO.UserDAO;
+import com.niit.Model.Blog;
 import com.niit.Model.User;
 
-public class UserInsertTest {
-
-	
+public class UserGetByIdTest {
 	private static DBConfig config;
 	@Autowired
 	private static UserDAO userDAO;
@@ -33,23 +29,12 @@ public class UserInsertTest {
 	
 	
 	@Test
-	public void testInsertUser() 
+	public void testGetUserById() 
 	{
 		
-			
 		User user = new User();
-
-		user.setfName("Chetan");
-		user.setlName("Shirke");
-		user.setAge(27);
-		user.setContactNo("78956423589");
-		user.setDob(new java.util.Date());
-		user.setGender("Male");
-		user.setEmail("chetan@gmail.com");
-		user.setPass("6789");
-		userDAO.addUser(user);
-		System.out.println("Data inserted in users table");
-
+		 user=(User)userDAO.getUser(22);
+		 System.out.println("ID: "+user.getUserId()+ ",UserName: " +user.getfName()+ ",Age: " +user.getAge()+ ",Email: " +user.getEmail());
 	}
 
 }

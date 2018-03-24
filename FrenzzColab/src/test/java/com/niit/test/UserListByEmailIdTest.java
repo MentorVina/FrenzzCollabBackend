@@ -1,7 +1,8 @@
 package com.niit.test;
 
+import static org.junit.Assert.assertTrue;
 
-import java.util.Date;
+import java.util.List;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -10,10 +11,10 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import com.niit.Config.DBConfig;
 import com.niit.DAO.UserDAO;
+import com.niit.Model.Blog;
 import com.niit.Model.User;
 
-public class UserInsertTest {
-
+public class UserListByEmailIdTest {
 	
 	private static DBConfig config;
 	@Autowired
@@ -35,21 +36,21 @@ public class UserInsertTest {
 	@Test
 	public void testInsertUser() 
 	{
-		
 			
 		User user = new User();
+		
+		List<User> listUsers=userDAO.listUser("chetan@yahoo.com");
+		assertTrue("List of user data display",listUsers.size()>0);
+		
+		for(User users:listUsers)
+		{
+			System.out.println(users.getUserId()+"::");
+			System.out.println(users.getfName()+"::");
+			System.out.println(users.getEmail()+"::");
+			System.out.println(users.getGender()+"::");
+			System.out.println(users.getDob()+"::");
+			
+		}
 
-		user.setfName("Chetan");
-		user.setlName("Shirke");
-		user.setAge(27);
-		user.setContactNo("78956423589");
-		user.setDob(new java.util.Date());
-		user.setGender("Male");
-		user.setEmail("chetan@gmail.com");
-		user.setPass("6789");
-		userDAO.addUser(user);
-		System.out.println("Data inserted in users table");
-
-	}
-
+}
 }

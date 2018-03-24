@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.DAO.JobDAO;
 import com.niit.Model.ApplyJob;
+import com.niit.Model.Blog;
 import com.niit.Model.Job;
 @Repository("JobDAO")
 public class JobDAOImpl implements JobDAO {
@@ -80,9 +81,9 @@ public class JobDAOImpl implements JobDAO {
 		Session session=sessionFactory.openSession();
 		Query query=session.createQuery("from Job where jobId=:jobId");
 		query.setParameter("jobId",jobId);
-		query.list();
-		List<Job> job=query.list();
-		return job;
+	
+		List<Job> listJobs=query.list();
+		return listJobs;
 	}
 	@Transactional
 	public boolean applyJob(ApplyJob app) {
