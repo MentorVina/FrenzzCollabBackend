@@ -41,7 +41,7 @@ public class ForumInsertTest {
 	    forum.setCreateDate(new java.util.Date());
 		forum.setUsername("Karina");
 		forum.setStatus("A");
-		forum.setLikes(2);
+		
 	   assertTrue("Data inserted in forum table",forumDAO.addForum(forum));
 		
 }

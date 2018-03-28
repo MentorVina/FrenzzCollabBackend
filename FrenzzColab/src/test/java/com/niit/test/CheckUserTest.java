@@ -2,8 +2,6 @@ package com.niit.test;
 
 import static org.junit.Assert.assertTrue;
 
-import java.util.List;
-
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +9,9 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import com.niit.Config.DBConfig;
 import com.niit.DAO.UserDAO;
-import com.niit.Model.Blog;
 import com.niit.Model.User;
 
-public class UserListByEmailIdTest {
-	
+public class CheckUserTest {
 	private static DBConfig config;
 	@Autowired
 	private static UserDAO userDAO;
@@ -31,26 +27,16 @@ public class UserListByEmailIdTest {
 		
 	userDAO =(UserDAO) context.getBean("userDAO");
 	}
-	
-	
 	@Test
-	public void testInsertUser() 
+	public void testCheckUser() 
 	{
-			
-		User user = new User();
+		User user=new User();
+		 user.setLoginName("Pranali");
+		 user.setPass("pass123");
 		
-		List<User> listUsers=userDAO.listUser("chetan@yahoo.com");
-		assertTrue("List of user data display",listUsers.size()>0);
+		assertTrue("Check User Fail",userDAO.checkLogin(user));
 		
-		for(User users:listUsers)
-		{
-			System.out.println(users.getUserId()+"::");
-			System.out.println(users.getfName()+"::");
-			System.out.println(users.getEmail()+"::");
-			System.out.println(users.getGender()+"::");
-			System.out.println(users.getDob()+"::");
-			
-		}
+		
+	}
 
-}
 }

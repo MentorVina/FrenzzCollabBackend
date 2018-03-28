@@ -33,11 +33,11 @@ public class UserUpdateTest {
 	
 	
 	@Test
-	public void testDeleteUser() 
+	public void testUpdateUser() 
 	{
 		User user = new User();
-		user=(User)userDAO.getUser(24);
-		 user.setEmail("chetan@yahoo.com");
+		user=(User)userDAO.getUser("Pranali");
+		 user.setEmail("pranali@yahoo.com");
 		 assertEquals("sucessfully updated into table" ,true,userDAO.updateUser(user));
 	}
 }

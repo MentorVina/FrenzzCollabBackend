@@ -17,37 +17,41 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class User {
 	
 	@Id
-	@GeneratedValue(generator="user_sequence", strategy= GenerationType.SEQUENCE)
-	@SequenceGenerator(name="user_sequence", sequenceName="user_seq", initialValue=1, allocationSize=1)
-	int userId;
-	
-	String fName;
-	String lName;
+	//@GeneratedValue(generator="user_sequence", strategy= GenerationType.SEQUENCE)
+	//@SequenceGenerator(name="user_sequence", sequenceName="user_seq", initialValue=1, allocationSize=1)
+	String loginName;
+	String userName;
+	String role;
 	int age;
 	String gender;
 	String contactNo;
 	String email;
 	String pass;
+	String address;
+	String isOnline;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
 	Date dob;
 	
-	public int getUserId() {
-		return userId;
+	
+	
+	
+	public String getLoginName() {
+		return loginName;
 	}
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setLoginName(String loginName) {
+		this.loginName = loginName;
 	}
-	public String getfName() {
-		return fName;
+	public String getUserName() {
+		return userName;
 	}
-	public void setfName(String fName) {
-		this.fName = fName;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
-	public String getlName() {
-		return lName;
+	public String getRole() {
+		return role;
 	}
-	public void setlName(String lName) {
-		this.lName = lName;
+	public void setRole(String role) {
+		this.role = role;
 	}
 	public int getAge() {
 		return age;
@@ -78,6 +82,18 @@ public class User {
 	}
 	public void setPass(String pass) {
 		this.pass = pass;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getIsOnline() {
+		return isOnline;
+	}
+	public void setIsOnline(String isOnline) {
+		this.isOnline = isOnline;
 	}
 	public Date getDob() {
 		return dob;

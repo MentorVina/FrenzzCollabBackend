@@ -1,6 +1,11 @@
 package com.niit.test;
 
 
+
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import java.util.Date;
 
 import org.junit.BeforeClass;
@@ -38,17 +43,20 @@ public class UserInsertTest {
 		
 			
 		User user = new User();
-
-		user.setfName("Chetan");
-		user.setlName("Shirke");
-		user.setAge(27);
-		user.setContactNo("78956423589");
+		user.setUserName(" Prama  Singh");
+		user.setLoginName("Param");
+		user.setAddress("54,Dharampeth");
+		user.setAge(32);
+		user.setContactNo("7895641236");
 		user.setDob(new java.util.Date());
+		user.setEmail("param@gmail.com");
 		user.setGender("Male");
-		user.setEmail("chetan@gmail.com");
-		user.setPass("6789");
-		userDAO.addUser(user);
-		System.out.println("Data inserted in users table");
+		user.setIsOnline("N");
+		user.setPass("pass12345");
+		user.setRole("ROLEADMIN");
+		
+		//System.out.println(userDAO.addUser(user));
+		assertTrue("Data inserted in users table",userDAO.addUser(user));
 
 	}
 

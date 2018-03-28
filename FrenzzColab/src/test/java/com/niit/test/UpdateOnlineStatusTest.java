@@ -1,5 +1,7 @@
 package com.niit.test;
 
+import static org.junit.Assert.assertTrue;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,10 +9,9 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import com.niit.Config.DBConfig;
 import com.niit.DAO.UserDAO;
-import com.niit.Model.Blog;
 import com.niit.Model.User;
 
-public class UserGetByIdTest {
+public class UpdateOnlineStatusTest {
 	private static DBConfig config;
 	@Autowired
 	private static UserDAO userDAO;
@@ -26,15 +27,13 @@ public class UserGetByIdTest {
 		
 	userDAO =(UserDAO) context.getBean("userDAO");
 	}
-	
-	
 	@Test
-	public void testGetUserById() 
+	public void testupdateOnlineStatusTest() 
 	{
+		User user=userDAO.getUser("Pranali");
+		System.out.println(userDAO.updateOnlineStatus("Y", user));
+	    assertTrue("Status Updated",userDAO.updateOnlineStatus("Y", user));
 		
-		User user = new User();
-		 user=(User)userDAO.getUser(22);
-		 System.out.println("ID: "+user.getUserId()+ ",UserName: " +user.getfName()+ ",Age: " +user.getAge()+ ",Email: " +user.getEmail());
 	}
 
 }

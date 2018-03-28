@@ -119,20 +119,7 @@ public List<Forum> listForum(String username) {
 	return listForums;
 	
 }
-public boolean incrementLikes(Forum forum) {
-	try
-	{
-		int likes=forum.getLikes();
-		likes++;
-		forum.setLikes(likes);
-		sessionFactory.getCurrentSession().update(forum);
-		return true;
-	}
-	catch(Exception e)
-	{
-		return false;
-	}
-}
+
 
 @Transactional
 public boolean addForumComment(ForumComment forumComment) {

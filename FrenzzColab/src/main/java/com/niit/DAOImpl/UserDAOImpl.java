@@ -34,6 +34,7 @@ public class UserDAOImpl implements UserDAO {
 		}
 		catch(Exception e)
 		{
+			System.out.println(e);
 			return false;
 		}
 	}
@@ -62,11 +63,11 @@ public class UserDAOImpl implements UserDAO {
 		}
 	}
 
-	public User getUser(int userId) {
+	public User getUser(String loginName) {
 		try
 		{
 			Session session=sessionFactory.openSession();
-			User user=session.get(User.class,userId);
+			User user=session.get(User.class,loginName);
 			session.close();
 			return user;
 		}
@@ -82,6 +83,41 @@ public class UserDAOImpl implements UserDAO {
 		query.setParameter("email",email);
 		List<User> listUsers=query.list();
 		return listUsers;
+	}
+
+	public boolean checkLogin(User user) {
+		try
+		{
+			Session session=sessionFactory.openSession();
+			Query query=session.createQuery("from User where loginName=:loginName and pass=:pass");
+			query.setParameter("loginName",user.getLoginName());
+			query.setParameter("pass", user.getPass());
+			User users=(User)query.list().get(0);
+			if(users==null)
+				return false;
+			else
+				return true;
+			
+	  }
+		catch(Exception e)
+		{
+			return false;
+		}
+	}
+	@Transactional
+	public boolean updateOnlineStatus(String status, User user) {
+		try
+		{
+			user.setIsOnline(status);
+			sessionFactory.getCurrentSession().update(user);
+			return true;
+		
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+			return false;
+		}
 	}
 	
 	
