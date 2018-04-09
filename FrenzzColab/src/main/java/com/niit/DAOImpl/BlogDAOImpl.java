@@ -125,6 +125,7 @@ public boolean incrementLikes(Blog blog) {
 		likes++;
 		blog.setLikes(likes);
 		sessionFactory.getCurrentSession().update(blog);
+		
 		return true;
 	}
 	catch(Exception e)

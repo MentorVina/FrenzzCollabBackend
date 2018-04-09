@@ -35,7 +35,7 @@ public class JobListByIdTest {
 	public void testUpdateJob() {
 		Job job = new Job();
 
-		List<Job> listJobs=jobDAO.listJob(62);
+		List<Job> listJobs=jobDAO.listJob();
 		assertTrue("List of job data display",listJobs.size()>0);
 		
 		for(Job jobs:listJobs)
