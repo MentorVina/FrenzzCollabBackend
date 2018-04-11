@@ -16,11 +16,13 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.niit.DAO.BlogDAO;
 import com.niit.DAO.ForumDAO;
+import com.niit.DAO.FriendDAO;
 import com.niit.DAO.JobDAO;
 import com.niit.DAO.ProfileUpdateDAO;
 import com.niit.DAO.UserDAO;
 import com.niit.DAOImpl.BlogDAOImpl;
 import com.niit.DAOImpl.ForumDAOImpl;
+import com.niit.DAOImpl.FriendDAOImpl;
 import com.niit.DAOImpl.JobDAOImpl;
 import com.niit.DAOImpl.ProfileDAOImpl;
 import com.niit.DAOImpl.UserDAOImpl;
@@ -29,6 +31,7 @@ import com.niit.Model.Blog;
 import com.niit.Model.BlogComment;
 import com.niit.Model.Forum;
 import com.niit.Model.ForumComment;
+import com.niit.Model.Friend;
 import com.niit.Model.Job;
 import com.niit.Model.ProfilePicture;
 import com.niit.Model.User;
@@ -90,6 +93,8 @@ public class DBConfig {
 			System.out.println("<--------------ForumComment Class Added-------------->");
 			sessionFactoryBuilder.addAnnotatedClass(ProfilePicture.class);
 			System.out.println("<--------------Profile Class Added-------------->");
+			sessionFactoryBuilder.addAnnotatedClass(Friend.class);
+			System.out.println("<--------------Friend Class Added-------------->");
 			
 			System.out.println("enter in session 5");
 			SessionFactory sessionFactory=sessionFactoryBuilder.buildSessionFactory();
@@ -131,6 +136,13 @@ public class DBConfig {
 		{
 			System.out.println("UserDAO found");
 			return new ProfileDAOImpl();
+		}
+		
+		@Bean(name="friendDAO")
+		public FriendDAO getFriendDAOImpl()
+		{
+			System.out.println("FriendDAO found");
+			return new FriendDAOImpl();
 		}
 		
 		
