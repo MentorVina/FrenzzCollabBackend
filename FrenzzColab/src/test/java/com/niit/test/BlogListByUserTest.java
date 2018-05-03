@@ -37,7 +37,7 @@ public class BlogListByUserTest {
 		
 		Blog blog = new Blog();
 		
-		List<Blog> listBlogs=blogDAO.listBlog("Kiri");
+		List<Blog> listBlogs=blogDAO.listBlog();
 		assertTrue("List of blog data display",listBlogs.size()>0);
 		
 		for(Blog blogs:listBlogs)

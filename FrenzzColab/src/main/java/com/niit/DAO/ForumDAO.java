@@ -2,8 +2,7 @@ package com.niit.DAO;
 
 import java.util.List;
 
-
-
+import com.niit.Model.Blog;
 import com.niit.Model.Forum;
 import com.niit.Model.ForumComment;
 
@@ -14,8 +13,8 @@ public interface ForumDAO {
 	public Forum getForum(int forumId);
 	public boolean approveForum(Forum forum);
 	public boolean rejectForum(Forum forum);
-	public List<Forum> listForum(String username);
-	
+	//public List<Forum> listForum(String username);
+	public List<Forum> listForum();
 	
 	public boolean addForumComment(ForumComment forumComment);
 	public boolean deleteForumComment(ForumComment forumComment);

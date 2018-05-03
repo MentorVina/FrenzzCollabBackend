@@ -1,8 +1,10 @@
 package com.niit.DAOImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,11 +62,18 @@ public class FriendDAOImpl implements FriendDAO {
 	public List<User> showSuggestedFriend(String loginName) 
 	{
 		Session session=sessionFactory.openSession();
-		
 	
-		Query query=session.createSQLQuery("select * from Users where loginName not in(select friendloginName from Friend where loginName='" +loginName+"')");
-		List<User>suggestFriend=(List<User>)query.list();
-		return suggestFriend;
+		SQLQuery query=session.createSQLQuery("select  loginName from Users where loginName not in(select friendloginName from Friend where loginName='" +loginName+"')and loginName!='"+loginName+"'");
+		List<Object>suggestFriend=(List<Object>)query.list();
+		List<User>suggestFriendList=new ArrayList<User>();
+		int i=0;
+		/*while(i<suggestFriend.size())
+		{
+			User user=session.get(User.class,(String)suggestFriend);
+					suggestFriendList.add(user);
+			           i++;
+			}*/
+		return suggestFriendList;
 	}
 
 	public List<Friend> showAllFriends(String loginName) 
@@ -81,6 +90,7 @@ public class FriendDAOImpl implements FriendDAO {
 		Session session =sessionFactory.openSession();
 		Query query=session.createQuery("from Friend where loginName=:currentuser and status='P' ");
 		query.setParameter("currentuser", loginName);
+		System.out.println("login name is "+loginName);
 		List<Friend> listFriends=query.list();
 		return listFriends;
 	}

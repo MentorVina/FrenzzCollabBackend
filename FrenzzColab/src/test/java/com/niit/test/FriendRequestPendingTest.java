@@ -30,7 +30,7 @@ public class FriendRequestPendingTest {
 		public void FriendRequestPendingtest()
 		{
 		
-			List<Friend> listFriendPending=friendDAO.showRequestPendingList("Rahul");
+			List<Friend> listFriendPending=friendDAO.showRequestPendingList("Pranali");
 			assertNotNull("Problem found null pointer",listFriendPending);
 			for(Friend friend:listFriendPending)
 			{

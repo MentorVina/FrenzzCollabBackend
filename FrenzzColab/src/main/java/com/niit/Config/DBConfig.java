@@ -14,12 +14,14 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+
 import com.niit.DAO.BlogDAO;
 import com.niit.DAO.ForumDAO;
 import com.niit.DAO.FriendDAO;
 import com.niit.DAO.JobDAO;
 import com.niit.DAO.ProfileUpdateDAO;
 import com.niit.DAO.UserDAO;
+
 import com.niit.DAOImpl.BlogDAOImpl;
 import com.niit.DAOImpl.ForumDAOImpl;
 import com.niit.DAOImpl.FriendDAOImpl;
@@ -107,6 +109,9 @@ public class DBConfig {
 			System.out.println("blogDAO found");
 			return new BlogDAOImpl();
 		}
+		
+		
+		
 		
 		@Bean(name="forumDAO")
 		public ForumDAO getForumDAOImpl()

@@ -109,13 +109,13 @@ public class BlogDAOImpl implements BlogDAO{
 			return false;
 		}
 	}
-public List<Blog> listBlog(String username) {
+/*public List<Blog> listBlog(String username) {
 	Session session=sessionFactory.openSession();
 	Query query=session.createQuery("from Blog where username=:username");
 	query.setParameter("username",username);
 	List<Blog> listBlogs=query.list();
 	return listBlogs;
-}
+}*/
 
 @Transactional
 public boolean incrementLikes(Blog blog) {
@@ -135,6 +135,25 @@ public boolean incrementLikes(Blog blog) {
 	
 }
 
+
+
+/*public List<BlogComment> listBlogComment(int blogId) {
+	Session session=sessionFactory.openSession();
+	Query query=session.createQuery("from BlogComment where blogId=:blogId");
+	query.setParameter("blogId",blogId);
+	List<BlogComment> listBlogComment=query.list();
+	return listBlogComment;
+}*/
+
+
+
+public List<Blog> listBlog() {
+	Session session = sessionFactory.openSession();
+	Query query = session.createQuery("FROM Blog");
+	List<Blog> listBlog = query.list();
+	return listBlog;
+}
+
 @Transactional
 public boolean addBlogComment(BlogComment blogComment) {
 	try
@@ -143,12 +162,13 @@ public boolean addBlogComment(BlogComment blogComment) {
 		return true;
 	}
 	catch(Exception e)
+	
 	{
+		System.out.println(e);
 		return false;
 	}
 	
 }
-
 @Transactional
 public boolean deleteBlogComment(BlogComment blogComment) {
 	try
@@ -161,8 +181,8 @@ public boolean deleteBlogComment(BlogComment blogComment) {
 		return false;
 	}
 	
+	
 }
-
 
 public BlogComment getBlogComment(int commentId) {
 	try
@@ -176,16 +196,16 @@ public BlogComment getBlogComment(int commentId) {
 	{
 		return null;
 	}
-	
-}
 
+}
 
 public List<BlogComment> listBlogComment(int blogId) {
-	Session session=sessionFactory.openSession();
-	Query query=session.createQuery("from BlogComment where blogId=:blogId");
+	Session session = sessionFactory.openSession();
+	Query query = session.createQuery("FROM BlogComment where blogId=:blogId");
 	query.setParameter("blogId",blogId);
-	List<BlogComment> listBlogComment=query.list();
-	return listBlogComment;
+	List<BlogComment> listBlogComments = query.list();
+	return listBlogComments;
 }
+
 
 }

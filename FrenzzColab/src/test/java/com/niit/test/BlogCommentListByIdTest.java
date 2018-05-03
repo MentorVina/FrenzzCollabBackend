@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.niit.Config.DBConfig;
+
 import com.niit.DAO.BlogDAO;
 import com.niit.Model.Blog;
 import com.niit.Model.BlogComment;
@@ -34,18 +35,24 @@ public class BlogCommentListByIdTest {
 	@Test
 	public void testGetBlogCommentListById() 
 	{
-		BlogComment blogComment	 = new BlogComment();
-		List<BlogComment> listBlogcomment=blogDAO.listBlogComment(25);
-		assertTrue("List of blogComment data display",listBlogcomment.size()>0);
-		for(BlogComment blogComments:listBlogcomment)
+           BlogComment blogComment = new BlogComment();
+		
+		List<BlogComment> listBlogs=blogDAO.listBlogComment(25);
+		assertTrue("List of blog data display",listBlogs.size()>0);
+		
+		for( BlogComment blogComments:listBlogs)
 		{
-			System.out.println(blogComments.getCommentId()+"::");
-			System.out.println(blogComments.getCommentText()+"::");
+			System.out.println(blogComments.getBlogId()+"::");
 			System.out.println(blogComments.getUsername()+"::");
+			System.out.println(blogComments.getCommentText()+"::");
+			System.out.println(blogComments.getCommentId()+"::");
+			
+			
+		}
 		
 			
 		}
 		
 	}
 
-}
+

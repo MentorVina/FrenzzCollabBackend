@@ -8,8 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.niit.Config.DBConfig;
+
 import com.niit.DAO.BlogDAO;
-import com.niit.Model.Blog;
+
 import com.niit.Model.BlogComment;
 
 public class BlogAddCommentTest {

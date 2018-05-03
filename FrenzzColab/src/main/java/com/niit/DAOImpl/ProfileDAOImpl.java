@@ -19,7 +19,7 @@ public class ProfileDAOImpl implements ProfileUpdateDAO  {
 	{
 		
 		Session session=sessionFactory.openSession();
-        session.save(profilePicture);
+        session.saveOrUpdate(profilePicture);
         session.flush();
         session.close();
 		

@@ -35,7 +35,7 @@ public class ForumListByUserTest {
 	public void testListByUserForum() {
         Forum forum = new Forum();
 		
-		List<Forum> listForums= forumDAO.listForum("Kajal");
+		List<Forum> listForums= forumDAO.listForum();
 		assertTrue("List of Forum data display",listForums.size()>0);
 		
 		for(Forum forums:listForums)

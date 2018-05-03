@@ -111,13 +111,24 @@ public boolean rejectForum(Forum forum) {
 	
 }
 
-public List<Forum> listForum(String username) {
+/*public List<Forum> listForum(String username) {
 	Session session=sessionFactory.openSession();
 	Query query=session.createQuery("from Forum where username=:username");
 	query.setParameter("username",username);
 	List<Forum> listForums=query.list();
 	return listForums;
 	
+}*/
+
+
+
+
+
+public List<Forum> listForum() {
+	Session session = sessionFactory.openSession();
+	Query query = session.createQuery("FROM Forum");
+	List<Forum> listForum = query.list();
+	return listForum;
 }
 
 
@@ -165,11 +176,11 @@ public ForumComment getForumComment(int commentId) {
 
 
 public List<ForumComment> listForumComment(int forumId) {
-	Session session=sessionFactory.openSession();
-	Query query=session.createQuery("from ForumComment where forumId=:forumId");
+	Session session = sessionFactory.openSession();
+	Query query = session.createQuery("FROM ForumComment where forumId=:forumId");
 	query.setParameter("forumId",forumId);
-	List<ForumComment> listForumComment=query.list();
-	return listForumComment;
+	List<ForumComment> listForumComments = query.list();
+	return listForumComments;
 }
 	
 }
